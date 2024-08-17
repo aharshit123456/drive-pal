@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  user_id       Int       @id @default(autoincrement())
+  email         String    @unique
+  username      String    @unique
+  password_hash String
+  date_of_birth DateTime
+  kyc_aadhar    String    @unique
+  kyc_pan       String    @unique
+  home_location String
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @default(now())
+  Bookings      Booking[]
+  Sessions      Session[]
+}
+
+model Center {
+  center_id       Int       @id @default(autoincrement())
+  center_name     String
+  center_location String
+  state           String
+  Vehicles        Vehicle[]
+  BookingsPickup  Booking[] @relation("PickupCenter")
+  BookingsDropoff Booking[] @relation("DropoffCenter")
+}
+
+model Vehicle {
+  vehicle_id Int          @id @default(autoincrement())
+  model_id   Int
+  center_id  Int
+  status     String
+  created_at DateTime     @default(now())
+  updated_at DateTime     @default(now())
+  model      VehicleModel @relation(fields: [model_id], references: [model_id])
+  center     Center       @relation(fields: [center_id], references: [center_id])
+  Bookings   Booking[]
+}
+
+model VehicleModel {
+  model_id   Int       @id @default(autoincrement())
+  type       String
+  name       String
+  details    Json
+  created_at DateTime  @default(now())
+  updated_at DateTime  @default(now())
+  Vehicles   Vehicle[]
+}
+
+model Booking {
+  booking_id        Int      @id @default(autoincrement())
+  user_id           Int
+  vehicle_id        Int
+  pickup_center_id  Int
+  dropoff_center_id Int
+  pickup_time       DateTime
+  dropoff_time      DateTime
+  status            String
+  created_at        DateTime @default(now())
+  updated_at        DateTime @default(now())
+  user              User     @relation(fields: [user_id], references: [user_id])
+  vehicle           Vehicle  @relation(fields: [vehicle_id], references: [vehicle_id])
+  pickupCenter      Center   @relation("PickupCenter", fields: [pickup_center_id], references: [center_id])
+  dropoffCenter     Center   @relation("DropoffCenter", fields: [dropoff_center_id], references: [center_id])
+}
+
+model Session {
+  session_id String   @id @default(uuid())
+  user_id    Int
+  created_at DateTime @default(now())
+  expires_at DateTime
+  user       User     @relation(fields: [user_id], references: [user_id])
+}

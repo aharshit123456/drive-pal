@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-// import "@google/model-viewer";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
@@ -42,29 +41,14 @@ const CarBooking = () => {
   return (
     <div style={containerStyle}>
       <header style={headerStyle}>
-      <Link href="/">
-        <img src="dp-logo.svg" alt="dp logo" style={{ height: "50px" }} /> </Link>
+        <Link href="/">
+          <img src="dp-logo.svg" alt="dp logo" style={{ height: "50px" }} />{" "}
+        </Link>
         <button style={bookButtonStyle}>Book</button>
       </header>
 
       <main style={mainStyle}>
-        {isClient && (
-          <ModelViewer
-            src={"scooter_simple.glb"}
-            camera-controls
-            auto-rotate
-            style={{ width: "100%", height: "500px" }}
-          ></ModelViewer>
-        )}
-
-        <div style={{ marginTop: "20px" }}>
-          <h1>2025 Mercedes-Benz CLA</h1>
-          <p>Rs. 6000 / 24 Hrs</p>
-          <p>Premium Range</p>
-          <button style={bookNowButtonStyle}>Book Now</button>
-        </div>
-
-        <div style={navigationStyle}>
+        <div style={modelViewerRowStyle}>
           <button
             onClick={() => alert("Previous Vehicle")}
             style={navButtonStyle}
@@ -72,9 +56,31 @@ const CarBooking = () => {
             &lt;
           </button>
 
+          {isClient && (
+            <ModelViewer
+              src={"scooter_simple.glb"}
+              camera-controls
+              auto-rotate
+              style={{ width: "100%", height: "500px" }}
+            ></ModelViewer>
+          )}
+
+          <button onClick={() => alert("Next Vehicle")} style={navButtonStyle}>
+            &gt;
+          </button>
+        </div>
+
+        <div style={informationRowStyle}>
           <button onClick={() => setShowMapModal(true)} style={iconButtonStyle}>
             <img src="/map-icon.png" alt="Map Icon" style={{ width: "50px" }} />
           </button>
+
+          <div style={{ textAlign: "center" }}>
+            <h1>2025 Mercedes-Benz CLA</h1>
+            <p>Rs. 6000 / 24 Hrs</p>
+            <p>Premium Range</p>
+            <button style={bookNowButtonStyle}>Book Now</button>
+          </div>
 
           <button
             onClick={() => setShowVehicleListModal(true)}
@@ -86,32 +92,24 @@ const CarBooking = () => {
               style={{ width: "50px" }}
             />
           </button>
-
-          <button onClick={() => alert("Next Vehicle")} style={navButtonStyle}>
-            &gt;
-          </button>
         </div>
       </main>
 
       {/* Map Modal */}
       {showMapModal && (
-  <div style={modalStyle}>
-    <div style={modalContentStyle}>
-      <button
-        onClick={() => setShowMapModal(false)}
-        style={closeButtonStyle}
-      >
-        X
-      </button>
-      <h2>Vehicle Location</h2>
-       {/* Embedding the Google Maps component */}
-    </div>
-  </div> 
+        <div style={modalStyle}>
+          <div style={modalContentStyle}>
+            <button
+              onClick={() => setShowMapModal(false)}
+              style={closeButtonStyle}
+            >
+              X
+            </button>
+            <h2>Vehicle Location</h2>
+            {/* Embedding the Google Maps component */}
+          </div>
+        </div>
       )}
-
-
-export default MapModal; 
-
 
       {/* Vehicle List Modal */}
       {showVehicleListModal && (
@@ -161,25 +159,17 @@ const mainStyle: React.CSSProperties = {
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
+  justifyContent: "space-between",
   textAlign: "center",
   overflow: "hidden",
 };
 
-const bookNowButtonStyle: React.CSSProperties = {
-  backgroundColor: "#f8c20e",
-  padding: "10px 20px",
-  fontSize: "20px",
-  border: "none",
-  color: "#000",
-};
-
-const navigationStyle: React.CSSProperties = {
-  marginTop: "50px",
+const modelViewerRowStyle: React.CSSProperties = {
   display: "flex",
+  alignItems: "center",
   justifyContent: "space-between",
   width: "100%",
+  marginBottom: "20px",
 };
 
 const navButtonStyle: React.CSSProperties = {
@@ -189,9 +179,24 @@ const navButtonStyle: React.CSSProperties = {
   fontSize: "30px",
 };
 
+const informationRowStyle: React.CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  width: "100%",
+};
+
 const iconButtonStyle: React.CSSProperties = {
   backgroundColor: "transparent",
   border: "none",
+};
+
+const bookNowButtonStyle: React.CSSProperties = {
+  backgroundColor: "#f8c20e",
+  padding: "10px 20px",
+  fontSize: "20px",
+  border: "none",
+  color: "#000",
 };
 
 const modalStyle: React.CSSProperties = {

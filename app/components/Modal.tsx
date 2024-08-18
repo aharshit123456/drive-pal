@@ -10,15 +10,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         display: isOpen ? 'block' : 'none',
         position: 'fixed',
         zIndex: 1000,
-        left: '50%',
-        top: '50%',
-        padding: '20px',
+        left: 0,
+        top: 0,
         width: '100%',
         height: '100%',
         overflow: 'auto',
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
-        borderRadius: '8px',
-        transform: 'translate(-50%, -50%)',
     };
 
     const modalContentStyle: React.CSSProperties = {
@@ -29,16 +26,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         width: '80%',
         borderRadius: '5px',
     };
-
-    const overlayStyle: React.CSSProperties = {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        zIndex: 999,
-      };
 
     const closeModalButtonStyle: React.CSSProperties = {
         backgroundColor: '#0070f3',
@@ -52,8 +39,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     };
 
     return (
-        <>
-        <div style={overlayStyle} onClick={onClose} />
         <div style={modalStyle}>
             <div style={modalContentStyle}>
                 <h2>Booking Form</h2>
@@ -64,7 +49,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 </button>
             </div>
         </div>
-        </>
     );
 };
 

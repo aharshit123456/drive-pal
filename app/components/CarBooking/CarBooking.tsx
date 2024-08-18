@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "@google/model-viewer";
 
 // Extend JSX.IntrinsicElements to include 'model-viewer'
@@ -20,6 +20,12 @@ interface HTMLModelViewerElement extends HTMLElement {
 }
 
 const CarBooking = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const [showMapModal, setShowMapModal] = useState(false);
   const [showVehicleListModal, setShowVehicleListModal] = useState(false);
 
@@ -31,12 +37,14 @@ const CarBooking = () => {
       </header>
 
       <main style={mainStyle}>
-        <model-viewer
-          src={"scooter_simple.glb"}
-          camera-controls
-          auto-rotate
-          style={{ width: "100%", height: "500px" }}
-        ></model-viewer>
+        {isClient && (
+          <model-viewer
+            src={"scooter_simple.glb"}
+            camera-controls
+            auto-rotate
+            style={{ width: "100%", height: "500px" }}
+          ></model-viewer>
+        )}
 
         <div style={{ marginTop: "20px" }}>
           <h1>2025 Mercedes-Benz CLA</h1>

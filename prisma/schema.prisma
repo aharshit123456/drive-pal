@@ -56,9 +56,11 @@ model VehicleModel {
   type       String
   name       String
   details    Json
+  price      Decimal? // Nullable for now
+  model_url  String? // Nullable for now
   created_at DateTime  @default(now())
-  updated_at DateTime  @default(now())
-  Vehicles   Vehicle[]
+  updated_at DateTime  @updatedAt
+  Vehicle    Vehicle[]
 }
 
 model Booking {

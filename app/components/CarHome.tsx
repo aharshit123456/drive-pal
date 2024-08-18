@@ -3,6 +3,9 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import "../globals.css";
+import Modal from "./Modal";
+
+
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
 

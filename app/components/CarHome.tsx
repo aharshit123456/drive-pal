@@ -27,13 +27,14 @@ const closeDropdown= () => {
       fontSize:"35px",
       marginRight:"25px",
       cursor: "pointer",
-      borderRight: '1px solid white',
+      // borderRight: '1px solid white',
     };
 
     const arrowbuttonStyle: React.CSSProperties = {
       backgroundColor: 'transparent',
       color:'white',
       padding:'1px 1px',
+      // marginRight: '1px',
       fontSize: '20px',
       border: 'none',
       borderRadius: '0 5px 5px 0',
@@ -42,19 +43,28 @@ const closeDropdown= () => {
 
     const dropdownStyle: React.CSSProperties = {
       display: isOpen ? 'block' : 'none',
-      position: "inherit",
+      position: "absolute",
       backgroundColor: 'grey',
       boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.2)',
       padding: '12px 16px',
       zIndex: 1,
       marginTop: '10px',
       borderRadius: '5px',
-      width: '100%',
+      width: '20%',
   };
 
   const dropdownItemStyle: React.CSSProperties = {
-      padding: '8px 0',
+    borderRight:'1px',
+      padding: '8px 1px',
       cursor: 'pointer',
+      position:'relative',
+  };
+
+  const dash: React.CSSProperties={
+    fontSize: "60px",
+    marginLeft: "0px",
+    marginRight: "15px",
+
   };
 
   const arrowStyle: React.CSSProperties={
@@ -67,21 +77,23 @@ const closeDropdown= () => {
 
     const headerStyle: React.CSSProperties = {
       display: "flex",
-      justifyContent: "end",
+      justifyContent: "space-between",
       alignItems: "center",
       marginLeft:"25px",
     };
 
+
  return(
 
   <div style={containerStyle}>
-        <img src="dp-logo.svg" alt="dp logo" style={{ height: "75px" }} />
-        <header style={headerStyle}>
+    <header style={headerStyle}>
+        <img src="dp-big-logo.svg" alt="dp logo" style={{ height: "75px" }} />
         <div style={containerStyle} 
           onMouseLeave={closeDropdown}>
 <button onClick={toggleDropdown} style={bookButtonStyle}>
           book
           </button>
+          <span style={dash}>|</span>
           <button onClick={toggleDropdown} style={arrowbuttonStyle}>
           <span style={arrowStyle}>&#9660;</span>
           </button>
@@ -91,7 +103,7 @@ const closeDropdown= () => {
                     <div style={dropdownItemStyle}>Customer Reviews</div>
                 </div>  
           
-      </div>  
+      </div> 
       </header> 
   </div>
   

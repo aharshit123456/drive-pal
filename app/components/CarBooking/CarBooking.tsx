@@ -1,7 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import "@google/model-viewer";
+// import "@google/model-viewer";
+import dynamic from "next/dynamic";
+
+const ModelViewer = dynamic(() => import("./ModelViewerWrapper"), {
+  ssr: false,
+});
 
 // Extend JSX.IntrinsicElements to include 'model-viewer'
 declare global {
@@ -29,6 +34,10 @@ const CarBooking = () => {
   const [showMapModal, setShowMapModal] = useState(false);
   const [showVehicleListModal, setShowVehicleListModal] = useState(false);
 
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <div style={containerStyle}>
       <header style={headerStyle}>
@@ -38,12 +47,12 @@ const CarBooking = () => {
 
       <main style={mainStyle}>
         {isClient && (
-          <model-viewer
+          <ModelViewer
             src={"scooter_simple.glb"}
             camera-controls
             auto-rotate
             style={{ width: "100%", height: "500px" }}
-          ></model-viewer>
+          ></ModelViewer>
         )}
 
         <div style={{ marginTop: "20px" }}>

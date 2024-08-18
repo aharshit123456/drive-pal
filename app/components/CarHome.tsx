@@ -1,23 +1,22 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState } from "react";
 
-  const HomePage = () => {
-    const containerStyle: React.CSSProperties = {
-        padding: '20px',
-    };
+const HomePage = () => {
+  const containerStyle: React.CSSProperties = {
+    padding: "20px",
+  };
 
-    const [isOpen, setIsOpen]= useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-const toggleDropdown = () => {
-  setIsOpen(!isOpen);
-};
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
-const closeDropdown= () => {
-  setIsOpen(false);
-};
-
-
+  const closeDropdown = () => {
+    setIsOpen(false);
+  };
 
     const bookButtonStyle: React.CSSProperties = {
       backgroundColor: "transparent",
@@ -67,12 +66,12 @@ const closeDropdown= () => {
 
   };
 
-  const arrowStyle: React.CSSProperties={
-    marginRight: '10px',
-    cursor: 'pointer',
-    fontSize:'20px',
-    transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-    transition: 'transform 0.2s ease',
+  const arrowStyle: React.CSSProperties = {
+    marginRight: "10px",
+    cursor: "pointer",
+    fontSize: "20px",
+    transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+    transition: "transform 0.2s ease",
   };
 
     const headerStyle: React.CSSProperties = {
@@ -95,7 +94,7 @@ const closeDropdown= () => {
           </button>
           <span style={dash}>|</span>
           <button onClick={toggleDropdown} style={arrowbuttonStyle}>
-          <span style={arrowStyle}>&#9660;</span>
+            <span style={arrowStyle}>&#9660;</span>
           </button>
           <div style={dropdownStyle}>
                     <div style={dropdownItemStyle}>Check Pricing</div>

@@ -26,10 +26,19 @@ interface HTMLModelViewerElement extends HTMLElement {
 
 const CarBooking = () => {
   const [isClient, setIsClient] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeDropdown = () => {
+    setIsOpen(false);
+  };
   useEffect(() => {
     setIsClient(true);
   }, []);
+
 
   const [showMapModal, setShowMapModal] = useState(false);
   const [showVehicleListModal, setShowVehicleListModal] = useState(false);
@@ -45,6 +54,15 @@ const CarBooking = () => {
           <img src="dp-logo.svg" alt="dp logo" style={{ height: "50px" }} />{" "}
         </Link>
         <button style={bookButtonStyle}>Book</button>
+        <span style={dash}>|</span>
+          <button onClick={toggleDropdown} style={arrowbuttonStyle} onMouseLeave={closeDropdown}>
+            <span style={arrowStyle}>&#709;</span>
+          </button>
+          <div className={`dropdown ${isOpen ? 'open' : ''}`} style={dropdownStyle}>
+            <div style={dropdownItemStyle}>Check Pricing</div>
+            <div style={dropdownItemStyle}>Our Locations</div>
+            <div style={dropdownItemStyle}>Customer Reviews</div>
+          </div>
       </header>
 
       <main style={mainStyle}>
@@ -128,7 +146,18 @@ const CarBooking = () => {
       )}
     </div>
   );
+  
 };
+const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeDropdown = () => {
+    setIsOpen(false);
+  };
+  
 
 // Styles
 const containerStyle: React.CSSProperties = {
@@ -239,5 +268,44 @@ const closeButtonStyle: React.CSSProperties = {
   right: "10px",
   cursor: "pointer",
 };
+const arrowbuttonStyle: React.CSSProperties = {
+  backgroundColor: 'transparent',
+  color: 'white',
+  padding: '1px 1px',
+  fontSize: '1px',
+  fontWeight: "20sp",
+  borderRadius: '0 5px 5px 0',
+  cursor: 'pointer',
+  fontFamily: 'Jomhuria, sans-serif',
+  transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+  transition: "transform 0.2s ease",
+};
+const dropdownStyle: React.CSSProperties = {
+  display: isOpen ? 'block' : 'none',
+  position: "absolute",
+  backgroundColor: 'grey',
+  boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.2)',
+  padding: '12px 16px',
+  zIndex: 1,
+  marginTop: '10px',
+  borderRadius: '5px',
+};
+const dropdownItemStyle: React.CSSProperties = {
+  padding: '8px 1px',
+  cursor: 'pointer',
+};
+const dash: React.CSSProperties = {
+  fontSize: "35px",
+  marginLeft: "0px",
+  marginRight: "15px",
+};
+
+const arrowStyle: React.CSSProperties = {
+  marginRight: "10px",
+  cursor: "pointer",
+  fontSize: "20px",
+  transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+  transition: "transform 0.2s ease",
+ };
 
 export default CarBooking;

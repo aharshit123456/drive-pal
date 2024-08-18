@@ -8,6 +8,7 @@ import Modal from "./Modal";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -16,6 +17,14 @@ const HomePage = () => {
   const closeDropdown = () => {
     setIsOpen(false);
   };
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
 
   const containerStyle: React.CSSProperties = {
     padding: "20px",
@@ -121,7 +130,7 @@ const HomePage = () => {
       <header style={headerStyle}>
       <img className="main_logo" src="dp-big-logo.svg" alt="dp logo" style={logoStyle} />
         <div style={containerStyle} onMouseLeave={closeDropdown}>
-          <button onClick={toggleDropdown} style={bookButtonStyle}>
+          <button onClick={openModal} style={bookButtonStyle}>
             book
           </button>
           <span style={dash}>|</span>

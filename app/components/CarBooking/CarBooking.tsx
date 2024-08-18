@@ -79,7 +79,7 @@ const CarBooking = () => {
               src={"scooter_simple.glb"}
               camera-controls
               auto-rotate
-              style={{ width: "100%", height: "500px" }}
+              style={modelViewerStyle}
             ></ModelViewer>
           )}
 
@@ -172,6 +172,12 @@ const containerStyle: React.CSSProperties = {
   overflow: "hidden",
 };
 
+const modelViewerStyle: React.CSSProperties = {
+  width: "100%",
+  height: "calc(50vh - 60px)", // Reduce height to fit the Information Row
+  maxHeight: "400px", // Optional: Set a maximum height for the ModelViewer
+};
+
 const headerStyle: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
@@ -188,9 +194,10 @@ const mainStyle: React.CSSProperties = {
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
+  alignItems: "center",
+  justifyContent: "space-around", // Distribute space evenly
   textAlign: "center",
-  overflow: "hidden",
+  transformOrigin: "top", // Scale from the top
 };
 
 const modelViewerRowStyle: React.CSSProperties = {
@@ -198,14 +205,14 @@ const modelViewerRowStyle: React.CSSProperties = {
   alignItems: "center",
   justifyContent: "space-between",
   width: "100%",
-  marginBottom: "20px",
+  flex: 1, // Allow the row to take available space
 };
 
 const navButtonStyle: React.CSSProperties = {
-  backgroundColor: "transparent",
-  border: "none",
+  fontSize: "min(5vw, 30px)",
   color: "#fff",
-  fontSize: "30px",
+  border: "none",
+  backgroundColor: "transparent",
 };
 
 const informationRowStyle: React.CSSProperties = {
@@ -213,6 +220,8 @@ const informationRowStyle: React.CSSProperties = {
   justifyContent: "space-between",
   alignItems: "center",
   width: "100%",
+  marginTop: "20px", // Margin at the top for spacing
+  flex: 0.5, // Occupy less space than the model viewer row
 };
 
 const iconButtonStyle: React.CSSProperties = {
@@ -246,7 +255,7 @@ const modalContentStyle: React.CSSProperties = {
   padding: "20px",
   borderRadius: "10px",
   width: "80%",
-  maxWidth: "500px",
+  maxHeight: "500px",
   textAlign: "center",
 };
 

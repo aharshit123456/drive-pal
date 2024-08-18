@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 // import "@google/model-viewer";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 const ModelViewer = dynamic(() => import("./ModelViewerWrapper"), {
   ssr: false,
@@ -41,7 +42,8 @@ const CarBooking = () => {
   return (
     <div style={containerStyle}>
       <header style={headerStyle}>
-        <img src="dp-logo.svg" alt="dp logo" style={{ height: "50px" }} />
+      <Link href="/">
+        <img src="dp-logo.svg" alt="dp logo" style={{ height: "50px" }} /> </Link>
         <button style={bookButtonStyle}>Book</button>
       </header>
 

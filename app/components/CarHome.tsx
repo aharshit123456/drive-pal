@@ -23,7 +23,7 @@ const HomePage = () => {
       border: "none",
       borderRadius: '5px 0 0 5px',
       color: "#fff",
-      fontSize:"35px",
+      fontSize:"25px",
       marginRight:"25px",
       cursor: "pointer",
       // borderRight: '1px solid white',
@@ -34,7 +34,7 @@ const HomePage = () => {
       color:'white',
       padding:'1px 1px',
       // marginRight: '1px',
-      fontSize: '20px',
+      fontSize: '1px',
       border: 'none',
       borderRadius: '0 5px 5px 0',
       cursor: 'pointer',
@@ -60,7 +60,7 @@ const HomePage = () => {
   };
 
   const dash: React.CSSProperties={
-    fontSize: "60px",
+    fontSize: "35px",
     marginLeft: "0px",
     marginRight: "15px",
 
@@ -69,7 +69,7 @@ const HomePage = () => {
   const arrowStyle: React.CSSProperties = {
     marginRight: "10px",
     cursor: "pointer",
-    fontSize: "20px",
+    fontSize: "15px",
     transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
     transition: "transform 0.2s ease",
   };
@@ -86,7 +86,7 @@ const HomePage = () => {
 
   <div style={containerStyle}>
     <header style={headerStyle}>
-        <img src="dp-big-logo.svg" alt="dp logo" style={{ height: "75px" }} />
+        <img src="dp-big-logo.svg" alt="dp logo" style={{ height: "50px" }} />
         <div style={containerStyle} 
           onMouseLeave={closeDropdown}>
 <button onClick={toggleDropdown} style={bookButtonStyle}>
@@ -104,6 +104,25 @@ const HomePage = () => {
           
       </div> 
       </header> 
+      
+      <main>
+      <Link href="/vehicles">
+        <button
+          style={{
+            textAlign:'center',
+            backgroundColor: "#f8c20e",
+            padding: "10px 20px",
+            fontSize: "20px",
+            border: "none",
+            color: "#000",
+            position:'absolute',
+            left:'43%',
+          }}
+        >
+          Go to Car Booking
+        </button>
+      </Link>
+      </main>
   </div>
   
  );

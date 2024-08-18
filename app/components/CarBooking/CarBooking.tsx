@@ -40,7 +40,7 @@ const CarBooking = () => {
 
         <div style={{ marginTop: "20px" }}>
           <h1>2025 Mercedes-Benz CLA</h1>
-          <p>Rs. 5000 / 24 Hrs</p>
+          <p>Rs. 6000 / 24 Hrs</p>
           <p>Premium Range</p>
           <button style={bookNowButtonStyle}>Book Now</button>
         </div>
@@ -76,19 +76,23 @@ const CarBooking = () => {
 
       {/* Map Modal */}
       {showMapModal && (
-        <div style={modalStyle}>
-          <div style={modalContentStyle}>
-            <button
-              onClick={() => setShowMapModal(false)}
-              style={closeButtonStyle}
-            >
-              X
-            </button>
-            <h2>Vehicle Location</h2>
-            {/* Embed your Google Maps component here */}
-          </div>
-        </div>
+  <div style={modalStyle}>
+    <div style={modalContentStyle}>
+      <button
+        onClick={() => setShowMapModal(false)}
+        style={closeButtonStyle}
+      >
+        X
+      </button>
+      <h2>Vehicle Location</h2>
+       {/* Embedding the Google Maps component */}
+    </div>
+  </div> 
       )}
+
+
+export default MapModal; 
+
 
       {/* Vehicle List Modal */}
       {showVehicleListModal && (
